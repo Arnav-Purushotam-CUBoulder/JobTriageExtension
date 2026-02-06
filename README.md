@@ -62,7 +62,3 @@ Then rerun the app in Xcode.
 3. Click `Load unpacked`.
 4. Select this repository root.
 
-## Security notes
-
-- Do not commit real API keys.
-- Do not commit local build output (`build/`, DerivedData, converter output).
