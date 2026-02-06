@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C813A7C0CF12051CA1CA3F5 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BAF44CC529D8D4923974E4 /* SafariWebExtensionHandler.swift */; };
+		20CAAFD9F2B7AAF1D90E621F /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDFF34D12DDB6F8B5B1A34FB /* SafariServices.framework */; };
+		3F25DFC4B88C86B99F84F903 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EA70E910C03B11DD67E5D83 /* manifest.json */; };
+		5A7FFAD0DCA42BDB905E3840 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 2B4A37865DC85E54948D0DA7 /* content.js */; };
+		6A90A2ECCECB5B6241A20F80 /* JobTriageSafariApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF0777D9F67E246E64BF62 /* JobTriageSafariApp.swift */; };
+		6F97D37CB224AD5A3347BB18 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDFF34D12DDB6F8B5B1A34FB /* SafariServices.framework */; };
+		87267D6EE6571D6B69360DA1 /* worker.js in Resources */ = {isa = PBXBuildFile; fileRef = 0C6C4CC4A831347CA8DB498F /* worker.js */; };
+		AD053E8B54382F37142496CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD658D0D6CAEF160CD2C664 /* ContentView.swift */; };
+		D5D1FCFE32B046A8D407FC82 /* JobTriageSafariExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BC6B9B8BE0A1578AB4C7F50D /* JobTriageSafariExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FDAF31ABD07DA74025FBED78 /* icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 596425C7B82A44C944630D7B /* icon1.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E53B44A52ED082C4EDF0B830 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46D0381A06EDDB565F5F354E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBBE3AE0E170D88B51F6B075;
+			remoteInfo = JobTriageSafariExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E3D2401277ED299E9C370E5E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D5D1FCFE32B046A8D407FC82 /* JobTriageSafariExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		00EF99CD36B816503442169E /* JobTriageSafari.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JobTriageSafari.entitlements; sourceTree = "<group>"; };
+		01BC7BF8E48D745B57D6887D /* JobTriageSafariExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JobTriageSafariExtension.entitlements; sourceTree = "<group>"; };
+		0C6C4CC4A831347CA8DB498F /* worker.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = worker.js; sourceTree = "<group>"; };
+		0FD658D0D6CAEF160CD2C664 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2B4A37865DC85E54948D0DA7 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
+		42DF29C2ACB1107E548C371B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		47BAF44CC529D8D4923974E4 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		4DDF0777D9F67E246E64BF62 /* JobTriageSafariApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTriageSafariApp.swift; sourceTree = "<group>"; };
+		596425C7B82A44C944630D7B /* icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1.png; sourceTree = "<group>"; };
+		7EA70E910C03B11DD67E5D83 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		BC6B9B8BE0A1578AB4C7F50D /* JobTriageSafariExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = JobTriageSafariExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF6B97A92A69B9C5013FD30E /* JobTriageSafari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobTriageSafari.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2537839587184AA01320110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FDFF34D12DDB6F8B5B1A34FB /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		019FEF94D3E6CBF3AA398F88 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F97D37CB224AD5A3347BB18 /* SafariServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F4F03F90411D73BC7DEB703 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20CAAFD9F2B7AAF1D90E621F /* SafariServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		37CDA3D77BC7455AB856EB2A /* JobTriageSafariApp */ = {
+			isa = PBXGroup;
+			children = (
+				0FD658D0D6CAEF160CD2C664 /* ContentView.swift */,
+				D2537839587184AA01320110 /* Info.plist */,
+				00EF99CD36B816503442169E /* JobTriageSafari.entitlements */,
+				4DDF0777D9F67E246E64BF62 /* JobTriageSafariApp.swift */,
+			);
+			path = JobTriageSafariApp;
+			sourceTree = "<group>";
+		};
+		7BEAEC1AF30A2C223B849414 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FDFF34D12DDB6F8B5B1A34FB /* SafariServices.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9CA88D914A216FD26A151057 /* JobTriageSafariExtension */ = {
+			isa = PBXGroup;
+			children = (
+				42DF29C2ACB1107E548C371B /* Info.plist */,
+				01BC7BF8E48D745B57D6887D /* JobTriageSafariExtension.entitlements */,
+				47BAF44CC529D8D4923974E4 /* SafariWebExtensionHandler.swift */,
+				AFB67CDC4DA8A10F95DE318C /* Resources */,
+			);
+			path = JobTriageSafariExtension;
+			sourceTree = "<group>";
+		};
+		AFB67CDC4DA8A10F95DE318C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2B4A37865DC85E54948D0DA7 /* content.js */,
+				596425C7B82A44C944630D7B /* icon1.png */,
+				7EA70E910C03B11DD67E5D83 /* manifest.json */,
+				0C6C4CC4A831347CA8DB498F /* worker.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B141DB4497545B995A5525B7 = {
+			isa = PBXGroup;
+			children = (
+				37CDA3D77BC7455AB856EB2A /* JobTriageSafariApp */,
+				9CA88D914A216FD26A151057 /* JobTriageSafariExtension */,
+				7BEAEC1AF30A2C223B849414 /* Frameworks */,
+				CCAC4064FE4A6656B702FBBE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CCAC4064FE4A6656B702FBBE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF6B97A92A69B9C5013FD30E /* JobTriageSafari.app */,
+				BC6B9B8BE0A1578AB4C7F50D /* JobTriageSafariExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7AA340DF1F7A5EE720E3BEE9 /* JobTriageSafari */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DD8317B3BB2ED292F9152FC /* Build configuration list for PBXNativeTarget "JobTriageSafari" */;
+			buildPhases = (
+				D0860727E9BA1DA55B8FDD60 /* Sources */,
+				2F4F03F90411D73BC7DEB703 /* Frameworks */,
+				E3D2401277ED299E9C370E5E /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D3BFE01A3AC14F96B5F250A2 /* PBXTargetDependency */,
+			);
+			name = JobTriageSafari;
+			packageProductDependencies = (
+			);
+			productName = JobTriageSafari;
+			productReference = BF6B97A92A69B9C5013FD30E /* JobTriageSafari.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DBBE3AE0E170D88B51F6B075 /* JobTriageSafariExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B23C8A21005529F4E454E30B /* Build configuration list for PBXNativeTarget "JobTriageSafariExtension" */;
+			buildPhases = (
+				E9C0E3E4E1FA146EFD5097D2 /* Sources */,
+				38E56E9EDA836275D064C214 /* Resources */,
+				019FEF94D3E6CBF3AA398F88 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JobTriageSafariExtension;
+			packageProductDependencies = (
+			);
+			productName = JobTriageSafariExtension;
+			productReference = BC6B9B8BE0A1578AB4C7F50D /* JobTriageSafariExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46D0381A06EDDB565F5F354E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					7AA340DF1F7A5EE720E3BEE9 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					DBBE3AE0E170D88B51F6B075 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 78B5949FE4F511ACA0106299 /* Build configuration list for PBXProject "JobTriageSafari" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = B141DB4497545B995A5525B7;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7AA340DF1F7A5EE720E3BEE9 /* JobTriageSafari */,
+				DBBE3AE0E170D88B51F6B075 /* JobTriageSafariExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		38E56E9EDA836275D064C214 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A7FFAD0DCA42BDB905E3840 /* content.js in Resources */,
+				FDAF31ABD07DA74025FBED78 /* icon1.png in Resources */,
+				3F25DFC4B88C86B99F84F903 /* manifest.json in Resources */,
+				87267D6EE6571D6B69360DA1 /* worker.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0860727E9BA1DA55B8FDD60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD053E8B54382F37142496CF /* ContentView.swift in Sources */,
+				6A90A2ECCECB5B6241A20F80 /* JobTriageSafariApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9C0E3E4E1FA146EFD5097D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C813A7C0CF12051CA1CA3F5 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D3BFE01A3AC14F96B5F250A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBBE3AE0E170D88B51F6B075 /* JobTriageSafariExtension */;
+			targetProxy = E53B44A52ED082C4EDF0B830 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		04CB9DB8F311BE3177645A27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = JobTriageSafariApp/JobTriageSafari.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = JobTriageSafariApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnavps.jobtriagesafari;
+				PRODUCT_NAME = JobTriageSafari;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		0C99A73AFA98E0A6CA42D7DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.10;
+			};
+			name = Debug;
+		};
+		8299EA39F9BDAC2D5F8E4471 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = JobTriageSafariExtension/JobTriageSafariExtension.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = JobTriageSafariExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnavps.jobtriagesafari.Extension;
+				PRODUCT_NAME = JobTriageSafariExtension;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		BFB5140076CA3DE7C71EE49A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.10;
+			};
+			name = Release;
+		};
+		EA88F3D17F79A2D7B88F61B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = JobTriageSafariApp/JobTriageSafari.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = JobTriageSafariApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnavps.jobtriagesafari;
+				PRODUCT_NAME = JobTriageSafari;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F060D1564A10DE515582C3AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = JobTriageSafariExtension/JobTriageSafariExtension.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = JobTriageSafariExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.arnavps.jobtriagesafari.Extension;
+				PRODUCT_NAME = JobTriageSafariExtension;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2DD8317B3BB2ED292F9152FC /* Build configuration list for PBXNativeTarget "JobTriageSafari" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04CB9DB8F311BE3177645A27 /* Debug */,
+				EA88F3D17F79A2D7B88F61B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		78B5949FE4F511ACA0106299 /* Build configuration list for PBXProject "JobTriageSafari" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C99A73AFA98E0A6CA42D7DF /* Debug */,
+				BFB5140076CA3DE7C71EE49A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B23C8A21005529F4E454E30B /* Build configuration list for PBXNativeTarget "JobTriageSafariExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F060D1564A10DE515582C3AE /* Debug */,
+				8299EA39F9BDAC2D5F8E4471 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46D0381A06EDDB565F5F354E /* Project object */;
+}

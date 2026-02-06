@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+
+# Secrets / local env
+.env
+.env.*
+
+# Logs
+*.log
+
+# Node
+node_modules/
+
+# Xcode / Apple build outputs
+DerivedData/
+build/
+*.xcuserstate
+*.moved-aside
+xcuserdata/
+
+# Converter output / generated duplicates (not needed for source control)
+safari-app-converter/
+safari-app-converter-clean/
+safari-convert-src/

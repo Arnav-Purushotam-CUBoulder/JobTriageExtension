@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Job Triage Safari",
+  "version": "2.0.0",
+  "description": "Detects job descriptions on any page and extracts sponsorship + years using OpenAI.",
+  "icons": {
+    "16": "icon1.png",
+    "48": "icon1.png",
+    "128": "icon1.png"
+  },
+  "background": {
+    "service_worker": "worker.js"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://api.openai.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
+  
