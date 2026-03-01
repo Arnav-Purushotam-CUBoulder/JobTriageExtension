@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Job Triage Profile Editor</title>
+    <link rel="stylesheet" href="profile-editor.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-header">
+        <h1>Profile Editor</h1>
+        <p>Edit your form-fill profile. Changes save locally in the extension and override file defaults.</p>
+      </header>
+
+      <form id="profile-form" novalidate>
+        <section class="card">
+          <h2>Basic</h2>
+          <div class="grid">
+            <label>
+              <span>Full Name</span>
+              <input id="full_name" type="text" autocomplete="name" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input id="email" type="email" autocomplete="email" />
+            </label>
+            <label>
+              <span>Phone</span>
+              <input id="phone" type="text" autocomplete="tel" />
+            </label>
+            <label>
+              <span>LinkedIn</span>
+              <input id="linkedin" type="url" />
+            </label>
+            <label>
+              <span>GitHub</span>
+              <input id="github" type="url" />
+            </label>
+            <label>
+              <span>Portfolio</span>
+              <input id="portfolio" type="url" />
+            </label>
+            <label class="full-row">
+              <span>Work Authorization</span>
+              <input id="work_authorization" type="text" />
+            </label>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Location</h2>
+          <div class="grid">
+            <label>
+              <span>Current City</span>
+              <input id="current_city" type="text" />
+            </label>
+            <label>
+              <span>Current State</span>
+              <input id="current_state" type="text" />
+            </label>
+            <label class="full-row">
+              <span>Address</span>
+              <input id="address" type="text" />
+            </label>
+            <label>
+              <span>Postal Code</span>
+              <input id="postal_code" type="text" autocomplete="postal-code" />
+            </label>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Skills</h2>
+          <label>
+            <span>Skills (comma or newline separated)</span>
+            <textarea id="skills" rows="4" placeholder="C, C++, CMake, Python"></textarea>
+          </label>
+        </section>
+
+        <section class="card">
+          <h2>Experience 1</h2>
+          <div class="grid">
+            <label>
+              <span>Company Name</span>
+              <input id="exp1_company_name" type="text" />
+            </label>
+            <label>
+              <span>Role Title</span>
+              <input id="exp1_role_title" type="text" />
+            </label>
+            <label>
+              <span>Start Date (Month Year)</span>
+              <input id="exp1_start_date" type="text" placeholder="October 2024" />
+            </label>
+            <label>
+              <span>End Date (Month Year)</span>
+              <input id="exp1_end_date" type="text" placeholder="Present" />
+            </label>
+            <label class="full-row">
+              <span>Description</span>
+              <textarea id="exp1_description" rows="5"></textarea>
+            </label>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Experience 2</h2>
+          <div class="grid">
+            <label>
+              <span>Company Name</span>
+              <input id="exp2_company_name" type="text" />
+            </label>
+            <label>
+              <span>Role Title</span>
+              <input id="exp2_role_title" type="text" />
+            </label>
+            <label>
+              <span>Start Date (Month Year)</span>
+              <input id="exp2_start_date" type="text" placeholder="November 2025" />
+            </label>
+            <label>
+              <span>End Date (Month Year)</span>
+              <input id="exp2_end_date" type="text" placeholder="Present" />
+            </label>
+            <label class="full-row">
+              <span>Description</span>
+              <textarea id="exp2_description" rows="5"></textarea>
+            </label>
+          </div>
+        </section>
+
+        <footer class="actions">
+          <button type="submit" id="save-btn">Save Profile</button>
+          <button type="button" id="reload-btn" class="secondary">Reload</button>
+          <button type="button" id="reset-btn" class="secondary">Reset to File Defaults</button>
+          <span id="status" class="status">Ready.</span>
+        </footer>
+      </form>
+    </main>
+
+    <script src="profile-editor.js"></script>
+  </body>
+</html>

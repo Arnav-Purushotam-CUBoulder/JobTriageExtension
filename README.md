@@ -25,7 +25,11 @@ open safari-app/JobTriageSafari.xcodeproj
 3. In `Signing & Capabilities`, set your Team for both targets:
    - `JobTriageSafari`
    - `JobTriageSafariExtension`
-4. Run the app from Xcode (`Cmd+R`).
+4. Run the app from Xcode (`Cmd+R`), or use the automated build/install script:
+
+```bash
+./safari-app/build-install-safari.sh
+```
 5. In Safari, open:
    - `Safari > Settings > Extensions`
 6. Enable `Job Triage Safari`.
@@ -33,13 +37,25 @@ open safari-app/JobTriageSafari.xcodeproj
 
 ## Configure OpenAI key
 
-1. Open any page where the widget appears.
-2. Click `Set API key` in the widget.
-3. Paste your OpenAI API key.
+Set your key only in the root `.env` file:
 
-The key is stored in extension local storage.
+```bash
+OPENAI_API_KEY=sk-...
+```
 
-For safety, leave this empty in code unless you explicitly want a local dev fallback:
+This file is ignored by git and is not committed.
+
+Then sync/build so Safari gets the latest `.env`:
+
+```bash
+./safari-app/sync-extension-files.sh
+# or
+./safari-app/build-install-safari.sh
+```
+
+The extension no longer supports entering API keys in the widget UI.
+
+For local fallback-only testing, leave this empty in code unless you explicitly want a hardcoded value:
 
 ```js
 const OPENAI_API_KEY_FALLBACK = '';
@@ -55,10 +71,15 @@ When you update root extension files, sync Safari resources:
 
 Then rerun the app in Xcode.
 
+For a full clean install flow that removes old Safari extension app copies first, then installs the newest build:
+
+```bash
+./safari-app/build-install-safari.sh
+```
+
 ## Chrome setup (optional)
 
 1. Open `chrome://extensions`.
 2. Enable `Developer mode`.
 3. Click `Load unpacked`.
 4. Select this repository root.
-

@@ -3,6 +3,7 @@
   "name": "Job Triage Safari",
   "version": "2.0.0",
   "description": "Detects job descriptions on any page and extracts sponsorship + years using OpenAI.",
+  "options_page": "profile-editor.html",
   "icons": {
     "16": "icon1.png",
     "48": "icon1.png",

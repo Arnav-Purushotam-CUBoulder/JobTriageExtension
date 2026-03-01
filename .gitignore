@@ -4,6 +4,7 @@
 # Secrets / local env
 .env
 .env.*
+profile.local.json
 
 # Logs
 *.log

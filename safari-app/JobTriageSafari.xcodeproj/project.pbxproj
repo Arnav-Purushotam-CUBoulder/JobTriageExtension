@@ -14,6 +14,11 @@
 		6A90A2ECCECB5B6241A20F80 /* JobTriageSafariApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF0777D9F67E246E64BF62 /* JobTriageSafariApp.swift */; };
 		6F97D37CB224AD5A3347BB18 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDFF34D12DDB6F8B5B1A34FB /* SafariServices.framework */; };
 		87267D6EE6571D6B69360DA1 /* worker.js in Resources */ = {isa = PBXBuildFile; fileRef = 0C6C4CC4A831347CA8DB498F /* worker.js */; };
+		A1D9F12D3C4E5B60718293A1 /* .env in Resources */ = {isa = PBXBuildFile; fileRef = A1D9F12D3C4E5B60718293A2 /* .env */; };
+		B1A10F304AA14D5A8E2D7001 /* profile-editor.html in Resources */ = {isa = PBXBuildFile; fileRef = B1A10F304AA14D5A8E2D7101 /* profile-editor.html */; };
+		B1A10F304AA14D5A8E2D7002 /* profile-editor.css in Resources */ = {isa = PBXBuildFile; fileRef = B1A10F304AA14D5A8E2D7102 /* profile-editor.css */; };
+		B1A10F304AA14D5A8E2D7003 /* profile-editor.js in Resources */ = {isa = PBXBuildFile; fileRef = B1A10F304AA14D5A8E2D7103 /* profile-editor.js */; };
+		B1A10F304AA14D5A8E2D7004 /* profile.local.json in Resources */ = {isa = PBXBuildFile; fileRef = B1A10F304AA14D5A8E2D7104 /* profile.local.json */; };
 		AD053E8B54382F37142496CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD658D0D6CAEF160CD2C664 /* ContentView.swift */; };
 		D5D1FCFE32B046A8D407FC82 /* JobTriageSafariExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BC6B9B8BE0A1578AB4C7F50D /* JobTriageSafariExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FDAF31ABD07DA74025FBED78 /* icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 596425C7B82A44C944630D7B /* icon1.png */; };
@@ -54,6 +59,11 @@
 		4DDF0777D9F67E246E64BF62 /* JobTriageSafariApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTriageSafariApp.swift; sourceTree = "<group>"; };
 		596425C7B82A44C944630D7B /* icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1.png; sourceTree = "<group>"; };
 		7EA70E910C03B11DD67E5D83 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		A1D9F12D3C4E5B60718293A2 /* .env */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
+		B1A10F304AA14D5A8E2D7101 /* profile-editor.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "profile-editor.html"; sourceTree = "<group>"; };
+		B1A10F304AA14D5A8E2D7102 /* profile-editor.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "profile-editor.css"; sourceTree = "<group>"; };
+		B1A10F304AA14D5A8E2D7103 /* profile-editor.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "profile-editor.js"; sourceTree = "<group>"; };
+		B1A10F304AA14D5A8E2D7104 /* profile.local.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "profile.local.json"; sourceTree = "<group>"; };
 		BC6B9B8BE0A1578AB4C7F50D /* JobTriageSafariExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = JobTriageSafariExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF6B97A92A69B9C5013FD30E /* JobTriageSafari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobTriageSafari.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2537839587184AA01320110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -113,9 +123,14 @@
 		AFB67CDC4DA8A10F95DE318C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A1D9F12D3C4E5B60718293A2 /* .env */,
 				2B4A37865DC85E54948D0DA7 /* content.js */,
 				596425C7B82A44C944630D7B /* icon1.png */,
 				7EA70E910C03B11DD67E5D83 /* manifest.json */,
+				B1A10F304AA14D5A8E2D7102 /* profile-editor.css */,
+				B1A10F304AA14D5A8E2D7101 /* profile-editor.html */,
+				B1A10F304AA14D5A8E2D7103 /* profile-editor.js */,
+				B1A10F304AA14D5A8E2D7104 /* profile.local.json */,
 				0C6C4CC4A831347CA8DB498F /* worker.js */,
 			);
 			path = Resources;
@@ -226,9 +241,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D9F12D3C4E5B60718293A1 /* .env in Resources */,
 				5A7FFAD0DCA42BDB905E3840 /* content.js in Resources */,
 				FDAF31ABD07DA74025FBED78 /* icon1.png in Resources */,
 				3F25DFC4B88C86B99F84F903 /* manifest.json in Resources */,
+				B1A10F304AA14D5A8E2D7002 /* profile-editor.css in Resources */,
+				B1A10F304AA14D5A8E2D7001 /* profile-editor.html in Resources */,
+				B1A10F304AA14D5A8E2D7003 /* profile-editor.js in Resources */,
+				B1A10F304AA14D5A8E2D7004 /* profile.local.json in Resources */,
 				87267D6EE6571D6B69360DA1 /* worker.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
