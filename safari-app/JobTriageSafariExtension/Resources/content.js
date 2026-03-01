@@ -993,6 +993,58 @@
     return name || code || stateText;
   }
 
+  function pickOptionOrRawFieldValue(field, preferredValues) {
+    const candidates = Array.isArray(preferredValues)
+      ? preferredValues.map((value) => normalizeProfileText(value, 180)).filter(Boolean)
+      : [];
+    if (!candidates.length) {
+      return '';
+    }
+
+    const options = Array.isArray(field?.options) ? field.options : [];
+    if (!options.length) {
+      return candidates[0];
+    }
+
+    for (const candidate of candidates) {
+      const option = findBestOptionWithAliases(options, candidate);
+      if (!option) {
+        continue;
+      }
+      return String(option.label || option.value || '').trim();
+    }
+
+    return candidates[0];
+  }
+
+  function pickEducationSchoolValue(entry, field) {
+    const school = normalizeProfileText(entry?.school || entry?.school_name || entry?.institution, 180);
+    const explicitFallback = normalizeProfileText(
+      entry?.school_fallback_if_missing || entry?.school_fallback || entry?.school_if_not_found,
+      120
+    );
+    const degreeText = normalizeFieldText(entry?.degree || entry?.education_level || '');
+    const implicitFallback = /\bbachelor/.test(degreeText) ? 'Other' : '';
+    const fallback = explicitFallback || implicitFallback;
+    const options = Array.isArray(field?.options) ? field.options : [];
+
+    if (!options.length) {
+      return school || fallback;
+    }
+
+    const schoolMatch = school ? findBestOptionWithAliases(options, school) : null;
+    if (schoolMatch) {
+      return String(schoolMatch.label || schoolMatch.value || '').trim();
+    }
+
+    const fallbackMatch = fallback ? findBestOptionWithAliases(options, fallback) : null;
+    if (fallbackMatch) {
+      return String(fallbackMatch.label || fallbackMatch.value || '').trim();
+    }
+
+    return fallback || school;
+  }
+
   function buildSkillsFillValue(field, skills) {
     const normalizedSkills = Array.isArray(skills) ? skills.filter(Boolean) : [];
     if (!normalizedSkills.length) {
@@ -1132,12 +1184,22 @@
     const experiences = Array.isArray(profile.experience)
       ? profile.experience.filter((item) => item && typeof item === 'object' && !Array.isArray(item))
       : [];
+    const educations = Array.isArray(profile.education)
+      ? profile.education.filter((item) => item && typeof item === 'object' && !Array.isArray(item))
+      : [];
     const experienceIndexByType = {
       company: 0,
       title: 0,
       start: 0,
       end: 0,
       description: 0
+    };
+    const educationIndexByType = {
+      school: 0,
+      degree: 0,
+      discipline: 0,
+      start: 0,
+      end: 0
     };
 
     const nextExperienceValue = (bucket, valueFn) => {
@@ -1147,6 +1209,16 @@
       const index = Math.min(experienceIndexByType[bucket] || 0, experiences.length - 1);
       experienceIndexByType[bucket] = (experienceIndexByType[bucket] || 0) + 1;
       const entry = experiences[index] || {};
+      return normalizeProfileText(valueFn(entry), 800);
+    };
+
+    const nextEducationValue = (bucket, valueFn) => {
+      if (!educations.length) {
+        return '';
+      }
+      const index = Math.min(educationIndexByType[bucket] || 0, educations.length - 1);
+      educationIndexByType[bucket] = (educationIndexByType[bucket] || 0) + 1;
+      const entry = educations[index] || {};
       return normalizeProfileText(valueFn(entry), 800);
     };
 
@@ -1170,6 +1242,7 @@
       if (!primaryContext) {
         continue;
       }
+      const isEducationContext = /\b(education|academic|degree|discipline|major|minor|field of study|school|university|college|institution)\b/.test(context);
 
       let value = '';
 
@@ -1216,6 +1289,52 @@
         /\b(work authorization|authorized to work|work permit|visa|sponsorship|sponsor|clearance|citizen|citizenship)\b/.test(context)
       ) {
         value = normalizeProfileText(profile.work_authorization, 300);
+      } else if (
+        /\b(school|university|college|institution)\b/.test(primaryContext) &&
+        isEducationContext
+      ) {
+        value = nextEducationValue('school', (entry) => pickEducationSchoolValue(entry, field));
+      } else if (
+        /\bdegree\b/.test(primaryContext) &&
+        !/\b(proficiency|angle|temperature)\b/.test(primaryContext) &&
+        isEducationContext
+      ) {
+        value = nextEducationValue('degree', (entry) => pickOptionOrRawFieldValue(field, [entry.degree]));
+      } else if (
+        /\b(discipline|major|field of study|speciali[sz]ation|program)\b/.test(primaryContext) &&
+        isEducationContext
+      ) {
+        value = nextEducationValue('discipline', (entry) => pickOptionOrRawFieldValue(field, [entry.discipline, entry.major]));
+      } else if (
+        /\bstart\b/.test(primaryContext) &&
+        /\b(date|month|year)\b/.test(primaryContext) &&
+        isEducationContext
+      ) {
+        value = nextEducationValue('start', (entry) => {
+          const parsed = parseMonthYearParts(entry.start_date);
+          if (/\bmonth\b/.test(primaryContext) && parsed.month) {
+            return parsed.month;
+          }
+          if (/\byear\b/.test(primaryContext) && parsed.year) {
+            return parsed.year;
+          }
+          return parsed.full;
+        });
+      } else if (
+        /\bend\b/.test(primaryContext) &&
+        /\b(date|month|year|present|current)\b/.test(primaryContext) &&
+        isEducationContext
+      ) {
+        value = nextEducationValue('end', (entry) => {
+          const parsed = parseMonthYearParts(entry.end_date);
+          if (/\bmonth\b/.test(primaryContext) && parsed.month) {
+            return parsed.month;
+          }
+          if (/\byear\b/.test(primaryContext) && parsed.year) {
+            return parsed.year;
+          }
+          return parsed.full;
+        });
       } else if (
         /\b(skill|skills|technology|technologies|tech stack|programming language|expertise|tools)\b/.test(primaryContext)
       ) {
@@ -1273,14 +1392,14 @@
         (kind === 'select' || kind === 'radio_group' || kind === 'combobox')
       ) {
         const option = findBestOptionWithAliases(field.options, trimmedValue);
-        if (!option) {
+        if (!option && kind !== 'combobox') {
           continue;
         }
-        const optionValue = String(option.label || option.value || '').trim();
-        if (!optionValue) {
+        const optionValue = String(option?.label || option?.value || '').trim();
+        if (!optionValue && kind !== 'combobox') {
           continue;
         }
-        fills.push({ field_id: fieldId, value: optionValue });
+        fills.push({ field_id: fieldId, value: optionValue || trimmedValue });
       } else {
         fills.push({ field_id: fieldId, value: trimmedValue });
       }

@@ -125,6 +125,24 @@
     setInputValue('exp2_start_date', exp2.start_date || '');
     setInputValue('exp2_end_date', exp2.end_date || '');
     setInputValue('exp2_description', exp2.description || '');
+
+    const education = Array.isArray(safeProfile.education) ? safeProfile.education : [];
+    const edu1 = education[0] && typeof education[0] === 'object' ? education[0] : {};
+    const edu2 = education[1] && typeof education[1] === 'object' ? education[1] : {};
+
+    setInputValue('edu1_school', edu1.school || edu1.school_name || '');
+    setInputValue('edu1_school_fallback_if_missing', edu1.school_fallback_if_missing || '');
+    setInputValue('edu1_degree', edu1.degree || '');
+    setInputValue('edu1_discipline', edu1.discipline || '');
+    setInputValue('edu1_start_date', edu1.start_date || '');
+    setInputValue('edu1_end_date', edu1.end_date || '');
+
+    setInputValue('edu2_school', edu2.school || edu2.school_name || '');
+    setInputValue('edu2_school_fallback_if_missing', edu2.school_fallback_if_missing || '');
+    setInputValue('edu2_degree', edu2.degree || '');
+    setInputValue('edu2_discipline', edu2.discipline || '');
+    setInputValue('edu2_start_date', edu2.start_date || '');
+    setInputValue('edu2_end_date', edu2.end_date || '');
   }
 
   function collectExperience(index) {
@@ -145,6 +163,29 @@
     if (startDate) item.start_date = startDate;
     if (endDate) item.end_date = endDate;
     if (description) item.description = description;
+    return item;
+  }
+
+  function collectEducation(index) {
+    const prefix = `edu${index}_`;
+    const school = normalizeText(getInputValue(`${prefix}school`));
+    const schoolFallback = normalizeText(getInputValue(`${prefix}school_fallback_if_missing`));
+    const degree = normalizeText(getInputValue(`${prefix}degree`));
+    const discipline = normalizeText(getInputValue(`${prefix}discipline`));
+    const startDate = normalizeText(getInputValue(`${prefix}start_date`));
+    const endDate = normalizeText(getInputValue(`${prefix}end_date`));
+
+    if (!school && !schoolFallback && !degree && !discipline && !startDate && !endDate) {
+      return null;
+    }
+
+    const item = {};
+    if (school) item.school = school;
+    if (schoolFallback) item.school_fallback_if_missing = schoolFallback;
+    if (degree) item.degree = degree;
+    if (discipline) item.discipline = discipline;
+    if (startDate) item.start_date = startDate;
+    if (endDate) item.end_date = endDate;
     return item;
   }
 
@@ -174,6 +215,19 @@
     }
     if (experience.length) {
       profile.experience = experience;
+    }
+
+    const education = [];
+    const edu1 = collectEducation(1);
+    const edu2 = collectEducation(2);
+    if (edu1) {
+      education.push(edu1);
+    }
+    if (edu2) {
+      education.push(edu2);
+    }
+    if (education.length) {
+      profile.education = education;
     }
 
     return profile;

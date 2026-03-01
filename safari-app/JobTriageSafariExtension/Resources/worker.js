@@ -301,6 +301,8 @@ Rules:
 - For state/province dropdowns, choose an exact matching option label/value (state name or abbreviation).
 - Use profile experience fields for work history sections (company, title, start/end date, description).
 - When multiple experience entries are present, map experience[0] to the first work-history block, then experience[1], and so on.
+- Use profile education fields for education sections (school, degree, discipline, start/end date).
+- If an education school value is not found in dropdown options and profile provides school_fallback_if_missing, use that fallback (for example "Other").
 - Use profile skills list for skill fields.
 - For selects/radios, value should match one of the provided option labels or option values.
 - For kind "combobox", prefer one exact option label/value when options are provided.
