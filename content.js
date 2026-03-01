@@ -1045,6 +1045,143 @@
     return fallback || school;
   }
 
+  function getProfileValueByAliases(profile, aliases) {
+    const safeProfile = profile && typeof profile === 'object' && !Array.isArray(profile) ? profile : {};
+    const keys = Array.isArray(aliases) ? aliases : [];
+    for (const key of keys) {
+      if (!key) {
+        continue;
+      }
+      const value = safeProfile[key];
+      const normalized = normalizeProfileText(value, 240);
+      if (normalized) {
+        return normalized;
+      }
+    }
+
+    if (!keys.length) {
+      return '';
+    }
+
+    const normalizedAliases = new Set(keys.map((alias) => normalizeFieldText(alias)).filter(Boolean));
+    for (const [rawKey, rawValue] of Object.entries(safeProfile)) {
+      const keyNorm = normalizeFieldText(rawKey);
+      if (!keyNorm || !normalizedAliases.has(keyNorm)) {
+        continue;
+      }
+      const normalizedValue = normalizeProfileText(rawValue, 240);
+      if (normalizedValue) {
+        return normalizedValue;
+      }
+    }
+
+    return '';
+  }
+
+  function resolveDisabilityPreference(profile) {
+    const rawValue = getProfileValueByAliases(profile, [
+      'disability_status',
+      'disability',
+      'disability_status_response',
+      'disabilityStatus',
+      'Disability Status'
+    ]);
+    const normalized = normalizeFieldText(rawValue);
+    if (!normalized) {
+      return '';
+    }
+
+    if (/\b(do not want to answer|prefer not to answer|decline|not wish|choose not to answer)\b/.test(normalized)) {
+      return 'decline';
+    }
+
+    if (
+      /\b(not a person with a disability|do not have a disability|no disability|without disability|not disabled)\b/.test(normalized) ||
+      normalized === 'no'
+    ) {
+      return 'no';
+    }
+
+    if (
+      /\b(person with a disability|have a disability|disabled)\b/.test(normalized) ||
+      normalized === 'yes'
+    ) {
+      return 'yes';
+    }
+
+    return '';
+  }
+
+  function disabilityPreferenceCandidates(preference) {
+    const normalized = normalizeFieldText(preference);
+    if (normalized === 'yes') {
+      return ['Yes', 'I have a disability', 'Yes, I have a disability'];
+    }
+    if (normalized === 'no') {
+      return ['No', 'I do not have a disability', 'No, I do not have a disability'];
+    }
+    if (normalized === 'decline') {
+      return ['I do not want to answer', 'Prefer not to answer', 'Decline to answer'];
+    }
+    return [];
+  }
+
+  function isDisabilityYesOption(text) {
+    const normalized = normalizeFieldText(text);
+    if (!normalized) {
+      return false;
+    }
+    return /\byes\b/.test(normalized) && /\bdisabil/.test(normalized);
+  }
+
+  function isDisabilityNoOption(text) {
+    const normalized = normalizeFieldText(text);
+    if (!normalized) {
+      return false;
+    }
+    if (/\b(do not want to answer|prefer not to answer|decline|choose not to answer)\b/.test(normalized)) {
+      return false;
+    }
+    return (
+      /\b(no|not)\b/.test(normalized) &&
+      /\bdisabil/.test(normalized)
+    );
+  }
+
+  function isDisabilityDeclineOption(text) {
+    const normalized = normalizeFieldText(text);
+    if (!normalized) {
+      return false;
+    }
+    return /\b(do not want to answer|prefer not to answer|decline|choose not to answer)\b/.test(normalized);
+  }
+
+  function resolveDisabilityCheckboxValue(optionText, preference) {
+    const pref = normalizeFieldText(preference);
+    if (!pref) {
+      return null;
+    }
+
+    const isYes = isDisabilityYesOption(optionText);
+    const isNo = isDisabilityNoOption(optionText);
+    const isDecline = isDisabilityDeclineOption(optionText);
+    if (!isYes && !isNo && !isDecline) {
+      return null;
+    }
+
+    if (pref === 'yes') {
+      return isYes;
+    }
+    if (pref === 'no') {
+      return isNo;
+    }
+    if (pref === 'decline') {
+      return isDecline;
+    }
+
+    return null;
+  }
+
   function buildSkillsFillValue(field, skills) {
     const normalizedSkills = Array.isArray(skills) ? skills.filter(Boolean) : [];
     if (!normalizedSkills.length) {
@@ -1224,6 +1361,7 @@
 
     const fills = [];
     const used = new Set();
+    const disabilityPreference = resolveDisabilityPreference(profile);
 
     for (const field of safeFields) {
       const fieldId = String(field?.field_id || '').trim();
@@ -1232,10 +1370,6 @@
       }
 
       const kind = String(field?.kind || '').trim().toLowerCase();
-      if (kind === 'checkbox') {
-        continue;
-      }
-
       const identityContext = buildFieldIdentityText(field);
       const context = buildFieldContextText(field);
       const primaryContext = identityContext || context;
@@ -1243,10 +1377,28 @@
         continue;
       }
       const isEducationContext = /\b(education|academic|degree|discipline|major|minor|field of study|school|university|college|institution)\b/.test(context);
+      const isDisabilityContext = /\b(disabilit|disability|disabled|handicap)\b/.test(context);
+
+      if (kind === 'checkbox') {
+        if (!disabilityPreference || !isDisabilityContext) {
+          continue;
+        }
+
+        const checkboxChoice = resolveDisabilityCheckboxValue(identityContext || primaryContext, disabilityPreference);
+        if (checkboxChoice === null) {
+          continue;
+        }
+
+        fills.push({ field_id: fieldId, value: checkboxChoice ? 'true' : 'false' });
+        used.add(fieldId);
+        continue;
+      }
 
       let value = '';
 
-      if (/\bemail\b/.test(primaryContext)) {
+      if (isDisabilityContext && disabilityPreference && (kind === 'radio_group' || kind === 'select' || kind === 'combobox')) {
+        value = pickOptionOrRawFieldValue(field, disabilityPreferenceCandidates(disabilityPreference));
+      } else if (/\bemail\b/.test(primaryContext)) {
         value = normalizeProfileText(profile.email, 180);
       } else if (/\b(first|given|forename)\b(?:\s+\w+){0,2}\s+\bname\b/.test(primaryContext) || /\bfirst_name\b/.test(primaryContext)) {
         value = firstName;

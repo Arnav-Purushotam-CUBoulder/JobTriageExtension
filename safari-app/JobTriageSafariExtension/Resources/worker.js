@@ -304,6 +304,7 @@ Rules:
 - Use profile education fields for education sections (school, degree, discipline, start/end date).
 - If an education school value is not found in dropdown options and profile provides school_fallback_if_missing, use that fallback (for example "Other").
 - Use profile skills list for skill fields.
+- For disability self-identification fields, use profile disability_status and select exactly one of yes/no/prefer-not options.
 - For selects/radios, value should match one of the provided option labels or option values.
 - For kind "combobox", prefer one exact option label/value when options are provided.
 - For kind "multi_select", return a comma-separated list of option labels/values.

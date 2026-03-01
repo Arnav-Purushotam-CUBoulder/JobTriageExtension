@@ -17,6 +17,7 @@
     'postal_code',
     'linkedin',
     'work_authorization',
+    'disability_status',
     'github',
     'portfolio'
   ];
@@ -104,6 +105,10 @@
     for (const fieldId of basicFieldIds) {
       setInputValue(fieldId, safeProfile[fieldId] || '');
     }
+    setInputValue(
+      'disability_status',
+      safeProfile.disability_status || safeProfile.disabilityStatus || safeProfile['Disability Status'] || safeProfile.disability || ''
+    );
 
     const skills = Array.isArray(safeProfile.skills)
       ? safeProfile.skills.map((item) => normalizeText(item)).filter(Boolean)
